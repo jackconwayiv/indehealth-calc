@@ -42,7 +42,7 @@
 .operator-button {
   color: white;
   background-color: #5A5AE9;
-  filter: drop-shadow(2px 2px 2px black);
+  filter: drop-shadow(1px 1px 1px gray);
 }
 
 .operator-button:hover {

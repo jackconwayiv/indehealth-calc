@@ -5,22 +5,43 @@ function App() {
   const [operandA, setOperandA] = useState<string | null>(null);
   const [operandB, setOperandB] = useState<string | null>(null);
   const [operator, setOperator] = useState<string | null>(null);
-  const [resultDisplay, setResultDisplay] = useState<number | null>(null);
+  const [display, setDisplay] = useState<string | null>(null);
+  const [result, setResult] = useState<string | null>(null);
 
-  const updateOperand = (e: string) => {
+  const updateOperand = (operand: string) => {
     if (!operator) {
       if (!operandA) {
-        setOperandA(e);
+        setOperandA(operand);
+        setDisplay(operand);
       } else {
-        setOperandA(operandA + e);
+        setOperandA(operandA + operand);
+        setDisplay(operandA + operand);
       }
     } else {
       if (!operandB) {
-        setOperandB(e);
+        setOperandB(operand);
+        setDisplay(operand);
       } else {
-        setOperandB(operandB + e);
+        setOperandB(operandB + operand);
+        setDisplay(operandB + operand);
       }
     }
+  };
+
+  const updateOperator = (operator: string) => {
+    //if no operandA, set operandA to 0
+    //if already an operator, treat this as an equals press
+    //and set return value to operandA after resetting state
+    setOperator(operator);
+  };
+
+  const clearAll = () => {
+    console.log("clearing");
+    setOperandA(null);
+    setOperandB(null);
+    setOperator(null);
+    setDisplay(null);
+    setResult(null);
   };
 
   // const routeDictionary = {
@@ -42,8 +63,8 @@ function App() {
         alt="inDeHealth logo"
       ></img>
       <div className="display-row">
-        [ {resultDisplay ? resultDisplay : ""} ] | {operandA || "x"}{" "}
-        {operator || "x"} {operandB || "x"}
+        [ {display ? display : ""} ] | {operandA || "x"} {operator || "x"}{" "}
+        {operandB || "x"}
       </div>
       <div className="button-row">
         <button className="operand-button" onClick={() => updateOperand("7")}>
@@ -55,7 +76,7 @@ function App() {
         <button className="operand-button" onClick={() => updateOperand("9")}>
           9
         </button>
-        <button className="operator-button" onClick={() => setOperator("*")}>
+        <button className="operator-button" onClick={() => updateOperator("*")}>
           *
         </button>
       </div>
@@ -69,7 +90,7 @@ function App() {
         <button className="operand-button" onClick={() => updateOperand("6")}>
           6
         </button>
-        <button className="operator-button" onClick={() => setOperator("-")}>
+        <button className="operator-button" onClick={() => updateOperator("-")}>
           -
         </button>
       </div>
@@ -83,27 +104,19 @@ function App() {
         <button className="operand-button" onClick={() => updateOperand("3")}>
           3
         </button>
-        <button className="operator-button" onClick={() => setOperator("+")}>
+        <button className="operator-button" onClick={() => updateOperator("+")}>
           +
         </button>
       </div>
       <div className="button-row">
-        <button
-          className="operator-button"
-          onClick={() => {
-            setOperandA(null);
-            setOperandB(null);
-            setOperator(null);
-            setResultDisplay(null);
-          }}
-        >
+        <button className="operator-button" onClick={clearAll}>
           C
         </button>
         <button className="operand-button" onClick={() => updateOperand("0")}>
           0
         </button>
 
-        <button className="operator-button" onClick={() => setOperator("/")}>
+        <button className="operator-button" onClick={() => updateOperator("/")}>
           /
         </button>
         <button className="operator-button">=</button>
