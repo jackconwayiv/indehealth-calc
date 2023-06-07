@@ -1,4 +1,15 @@
-# Getting Started with Create React App
+# Take Home Assessment: React + Express JS Calculator
+
+I also added TypeScript because I'm an overachiever.
+
+# BACK END:
+
+To start the server, type `npm run start` in the root directory.
+To start the React app, type `npm run start` from the '/frontend' directory.
+
+# FRONT END:
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

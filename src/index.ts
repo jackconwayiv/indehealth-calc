@@ -27,7 +27,7 @@ app.post("/api/calculate", (req, res) => {
     if (operator === "/") {
       res.send((opA / opB).toString());
     }
-  } catch (error: any) {
+  } catch (error) {
     res.send(`Could not complete calculation: ${error}`);
   }
 });
