@@ -2,35 +2,34 @@ import express from "express";
 const app = express();
 const port = 8080;
 
+app.use(express.json());
+
 // default route
 app.get("/api", (_, res) => {
-  res.send("Hello world!");
+  res.send("indeHealth calculator API ready to calculate!");
 });
 
 // operation routes
-app.get("/api/add", (req, res) => {
-  const { operandA, operandB } = req.body.params;
-  console.log(operandA, operandB);
-  res.send(parseInt(operandA) + parseInt(operandB));
-});
-
-app.get("/api/subtract", (req, res) => {
-  const { operandA, operandB } = req.body.params;
-  res.send(parseInt(operandA) - parseInt(operandB));
-});
-
-app.get("/api/multiply", (req, res) => {
-  const { operandA, operandB } = req.body.params;
-  res.send(parseInt(operandA) * parseInt(operandB));
-});
-
-app.get("/api/divide", (req, res) => {
-  const { operandA, operandB } = req.body.params;
-  res.send(parseInt(operandA) / parseInt(operandB));
+app.post("/api/calculate", (req, res) => {
+  const { operandA, operandB, operator } = req.body.params;
+  const opA = parseInt(operandA, 10);
+  const opB = parseInt(operandB, 10);
+  if (operator === "+") {
+    res.send((opA + opB).toString());
+  }
+  if (operator === "-") {
+    res.send((opA - opB).toString());
+  }
+  if (operator === "*") {
+    res.send((opA * opB).toString());
+  }
+  if (operator === "/") {
+    res.send((opA / opB).toString());
+  }
 });
 
 // start the server
 app.listen(port, () => {
   // tslint:disable-next-line:no-console
-  console.log(`InDeHealth Calculator listening on port ${port}...`);
+  console.log(`indeHealth Calculator listening on port ${port}...`);
 });

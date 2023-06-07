@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import "./App.css";
 
@@ -36,7 +37,6 @@ function App() {
   };
 
   const clearAll = () => {
-    console.log("clearing");
     setOperandA(null);
     setOperandB(null);
     setOperator(null);
@@ -44,16 +44,13 @@ function App() {
     setResult(null);
   };
 
-  // const routeDictionary = {
-  //   "+": "add",
-  //   "-": "subtract",
-  //   "/": "divide",
-  //   "*": "multiply",
-  // };
-
-  // const handleCalculation = async () => {
-  //   const operationRoute = operator ? routeDictionary[operator] : "add";
-  // };
+  const handleCalculation = async () => {
+    const request = { params: { operandA, operandB, operator } };
+    const { data } = await axios.post("/api/calculate", request);
+    clearAll();
+    setResult(data);
+    setDisplay(data);
+  };
 
   return (
     <div className="calculator">
@@ -62,9 +59,11 @@ function App() {
         width="200px"
         alt="inDeHealth logo"
       ></img>
-      <div className="display-row">
-        [ {display ? display : ""} ] | {operandA || "x"} {operator || "x"}{" "}
-        {operandB || "x"}
+      <div className="display-row-container">
+        <span className="display-row">
+          {operandA || ""} {operator || ""} {operandB || ""}
+        </span>
+        <span className="display-row">{display ? display : ""}</span>
       </div>
       <div className="button-row">
         <button className="operand-button" onClick={() => updateOperand("7")}>
@@ -119,7 +118,9 @@ function App() {
         <button className="operator-button" onClick={() => updateOperator("/")}>
           /
         </button>
-        <button className="operator-button">=</button>
+        <button className="operator-button" onClick={handleCalculation}>
+          =
+        </button>
       </div>
     </div>
   );
