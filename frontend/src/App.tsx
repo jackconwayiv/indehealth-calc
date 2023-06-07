@@ -59,14 +59,7 @@ function App() {
         width="200px"
         alt="inDeHealth logo"
       ></img>
-      <div className="display-row-container">
-        <span className="display-row">
-          {operandA === null ? "" : operandA}{" "}
-          {operator === null ? "" : operator}{" "}
-          {operandB === null ? "" : operandB}
-        </span>
-        <span className="display-row">{display === null ? "" : display}</span>
-      </div>
+      <div className="display-row">{display === null ? "" : display}</div>
       <div className="button-row">
         <button className="operand-button" onClick={() => updateOperand("7")}>
           7
