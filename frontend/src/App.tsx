@@ -35,33 +35,61 @@ function App() {
   // };
 
   return (
-    <div>
-      <img src="/i-logo.png" width="50px"></img>
-      <div>CALCULATOR</div>
-      <div>DISPLAY: [ {resultDisplay ? resultDisplay : ""} ]</div>
-      <div>
-        operandA: {operandA} operandB: {operandB} operator: {operator}
+    <div className="calculator">
+      <img
+        src="/transparent-logo.png"
+        width="200px"
+        alt="inDeHealth logo"
+      ></img>
+      <div className="display-row">
+        [ {resultDisplay ? resultDisplay : ""} ] | {operandA || "x"}{" "}
+        {operator || "x"} {operandB || "x"}
       </div>
-      <div>
-        <button onClick={() => updateOperand("7")}>7</button>
-        <button onClick={() => updateOperand("8")}>8</button>
-        <button onClick={() => updateOperand("9")}>9</button>
-        <button onClick={() => setOperator("*")}>*</button>
+      <div className="button-row">
+        <button className="operand-button" onClick={() => updateOperand("7")}>
+          7
+        </button>
+        <button className="operand-button" onClick={() => updateOperand("8")}>
+          8
+        </button>
+        <button className="operand-button" onClick={() => updateOperand("9")}>
+          9
+        </button>
+        <button className="operator-button" onClick={() => setOperator("*")}>
+          *
+        </button>
       </div>
-      <div>
-        <button onClick={() => updateOperand("4")}>4</button>
-        <button onClick={() => updateOperand("5")}>5</button>
-        <button onClick={() => updateOperand("6")}>6</button>
-        <button onClick={() => setOperator("-")}>-</button>
+      <div className="button-row">
+        <button className="operand-button" onClick={() => updateOperand("4")}>
+          4
+        </button>
+        <button className="operand-button" onClick={() => updateOperand("5")}>
+          5
+        </button>
+        <button className="operand-button" onClick={() => updateOperand("6")}>
+          6
+        </button>
+        <button className="operator-button" onClick={() => setOperator("-")}>
+          -
+        </button>
       </div>
-      <div>
-        <button onClick={() => updateOperand("1")}>1</button>
-        <button onClick={() => updateOperand("2")}>2</button>
-        <button onClick={() => updateOperand("3")}>3</button>
-        <button onClick={() => setOperator("+")}>+</button>
+      <div className="button-row">
+        <button className="operand-button" onClick={() => updateOperand("1")}>
+          1
+        </button>
+        <button className="operand-button" onClick={() => updateOperand("2")}>
+          2
+        </button>
+        <button className="operand-button" onClick={() => updateOperand("3")}>
+          3
+        </button>
+        <button className="operator-button" onClick={() => setOperator("+")}>
+          +
+        </button>
       </div>
-      <div>
+      <div className="button-row">
         <button
+          className="operator-button"
           onClick={() => {
             setOperandA(null);
             setOperandB(null);
@@ -71,9 +99,14 @@ function App() {
         >
           C
         </button>
-        <button onClick={() => updateOperand("0")}>0</button>
-        <button onClick={() => setOperator("/")}>/</button>
-        <button>=</button>
+        <button className="operand-button" onClick={() => updateOperand("0")}>
+          0
+        </button>
+
+        <button className="operator-button" onClick={() => setOperator("/")}>
+          /
+        </button>
+        <button className="operator-button">=</button>
       </div>
     </div>
   );
