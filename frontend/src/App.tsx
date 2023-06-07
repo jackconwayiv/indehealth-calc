@@ -61,9 +61,11 @@ function App() {
       ></img>
       <div className="display-row-container">
         <span className="display-row">
-          {operandA || ""} {operator || ""} {operandB || ""}
+          {operandA === null ? "" : operandA}{" "}
+          {operator === null ? "" : operator}{" "}
+          {operandB === null ? "" : operandB}
         </span>
-        <span className="display-row">{display ? display : ""}</span>
+        <span className="display-row">{display === null ? "" : display}</span>
       </div>
       <div className="button-row">
         <button className="operand-button" onClick={() => updateOperand("7")}>
